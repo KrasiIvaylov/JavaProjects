@@ -16,5 +16,6 @@ public class ApplicationStarter {
                 "test_orm",
                 ApplicationStarter.class
         );
+        System.out.println("Morning");
     }
 }
