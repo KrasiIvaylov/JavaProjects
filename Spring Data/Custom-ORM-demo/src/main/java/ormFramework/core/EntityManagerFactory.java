@@ -18,9 +18,9 @@ public class EntityManagerFactory {
                                        String user, String pass, String dbName,
                                        Class<?> mainClass) throws SQLException, URISyntaxException, ClassNotFoundException {
         Connection connection = createConnection(dbType, host, port, user, pass, dbName);
-
-        createTable(mainClass, connection);
-        return null;
+        List<Class<?>> classes = getEntities(mainClass);
+       // createTable(connection, classes);
+        return new EntityManagerImpl(connection);
     }
 
     private static void createTable(Class<?> mainClass, Connection connection) throws URISyntaxException, ClassNotFoundException, SQLException {
