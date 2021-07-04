@@ -3,6 +3,7 @@ import entities.Department;
 import entities.Employee;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -89,17 +90,21 @@ public class Engine implements Runnable {
         System.out.println("Enter employee last name:");
         String lastName = bufferedReader.readLine();
 
-        Employee employee = entityManager
-                .createQuery("SELECT e FROM Employee e " +
-                        "WHERE e.lastName = :l_name", Employee.class)
-                .setParameter("l_name", lastName)
-                .getSingleResult();
-        System.out.println("Please enter your new address:");
-        Address address = createAddress(bufferedReader.readLine());
-
-        entityManager.getTransaction().begin();
-        employee.setAddress(address);
-        entityManager.getTransaction().commit();
+        try {
+            Employee employee = entityManager
+                    .createQuery("SELECT e FROM Employee e " +
+                            "WHERE e.lastName = :l_name ", Employee.class)
+                    .setMaxResults(1)
+                    .setParameter("l_name", lastName)
+                    .getSingleResult();
+            System.out.println("Please enter your new address:");
+            Address address = createAddress(bufferedReader.readLine());
+            entityManager.getTransaction().begin();
+            employee.setAddress(address);
+            entityManager.getTransaction().commit();
+        }catch (NonUniqueResultException e){
+            System.out.println("More then one person with the given surname !");
+        }
     }
 
     private void Exercise05() {
