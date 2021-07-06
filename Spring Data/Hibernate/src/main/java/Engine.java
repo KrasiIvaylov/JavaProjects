@@ -35,6 +35,7 @@ public class Engine implements Runnable {
                 case 5 -> Exercise05();
                 case 6 -> Exercise06();
                 case 7 -> Exercise07();
+                case 9 -> Exercise09();
                 case 10 -> Exercise10();
                 case 12 -> Exercise12();
             }
@@ -51,6 +52,29 @@ public class Engine implements Runnable {
                         "group by d.name\n" +
                         "HAVING `m_salary` NOT BETWEEN 30000 AND 70000;")
                 .getResultList();
+    }
+
+    private void Exercise09{
+        findLatest10Projects() {
+
+            List<Project> resultList = entityManager.createQuery("select p from Project p" +
+                            " order by p.startDate desc ",
+                    Project.class)
+                    .setMaxResults(10)
+                    .getResultList();
+
+            resultList.stream().sorted(Comparator.comparing(Project::getName))
+                    .forEach(project -> {
+                        System.out.printf("Project name: %s%n" +
+                                        "             Project Description: %s%n" +
+                                        "             Project Start Date:%s%n" +
+                                        "             Project End Date: %s%n",
+                                project.getName(),
+                                project.getDescription(),
+                                project.getStartDate(),
+                                project.getEndDate());
+                    });
+        }
     }
 
     private void Exercise10() {

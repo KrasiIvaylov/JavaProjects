@@ -1,4 +1,6 @@
-package entity;
+package WizardDepositDataBase;
+
+import Entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -98,7 +100,7 @@ public class WizardDeposit extends BaseEntity {
         this.depositStartDate = depositStartDate;
     }
 
-    @Column(name = "deposit_amount")
+    @Column(name = "deposit_amount", precision = 10, scale = 3)
     public BigDecimal getDepositAmount() {
         return depositAmount;
     }
@@ -134,6 +136,7 @@ public class WizardDeposit extends BaseEntity {
         this.depositExpirationDate = depositExpirationDate;
     }
 
+    @Column(name = "is_deposit_expired")
     public Boolean getDepositExpired() {
         return isDepositExpired;
     }
