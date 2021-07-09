@@ -1,15 +1,19 @@
-package com.example.springintro.service;
+package com.example.springintro.service.Impl;
 
 import ch.qos.logback.core.joran.conditional.IfAction;
 import com.example.springintro.model.entity.Category;
 import com.example.springintro.repository.CategoryRepository;
+import com.example.springintro.service.CategoryService;
 import net.bytebuddy.description.field.FieldList;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,5 +40,22 @@ public class CategoryServiceImpl implements CategoryService {
 
                     categoryRepository.save(category);
                 });
+    }
+
+    @Override
+    public Set<Category> getRandomCategories() {
+        Set<Category> categories = new HashSet<>();
+        int randomInteger = ThreadLocalRandom
+                .current().nextInt(1, 3);
+        long catRepoCount = categoryRepository.count();
+
+        for (int i = 0; i < randomInteger; i++) {
+            long randomId = ThreadLocalRandom.current().nextLong(1, catRepoCount + 1);
+            Category category = categoryRepository
+                    .findById(randomId)
+                    .orElse(null);
+            categories.add(category);
+        }
+        return categories;
     }
 }
