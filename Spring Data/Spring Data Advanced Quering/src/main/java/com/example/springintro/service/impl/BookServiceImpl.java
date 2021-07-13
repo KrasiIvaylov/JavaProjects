@@ -79,6 +79,57 @@ public class BookServiceImpl implements BookService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<String> findAllBookTitlesWithAgeRestriction(AgeRestriction ageRestriction) {
+        return bookRepository
+                .findAllByAgeRestriction(ageRestriction)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllGoldBooksWithTitlesLEssThen5000() {
+        return bookRepository
+                .findAllByEditionTypeAndCopiesLessThan(EditionType.GOLD, 5000)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllBookTitlesWithPriceLessThen5OrMoreThen40() {
+        return bookRepository
+                .findAllByPriceLessThanOrPriceGreaterThan(BigDecimal.valueOf(5L), BigDecimal.valueOf(40L))
+                .stream()
+                .map(book -> String.format("%s - $ %.2f",
+                        book.getTitle(), book.getPrice()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllNotReleasedBooks(int year) {
+        LocalDate lower = LocalDate.of(year, 1, 1);
+        LocalDate upper = LocalDate.of(year, 12, 31);
+
+
+        return bookRepository
+                .findAllByReleaseDateBeforeOrReleaseDateAfter(lower, upper)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllBooksBeforeDate(LocalDate localDate) {
+        return bookRepository
+                .findAllByReleaseDateBefore(localDate)
+                .stream()
+                .map(book -> String.format("%s %s %.2f",
+                        book.getTitle(),book.getEditionType().name(),book.getPrice()))
+                .collect(Collectors.toList());
+    }
+
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
         LocalDate releaseDate = LocalDate
