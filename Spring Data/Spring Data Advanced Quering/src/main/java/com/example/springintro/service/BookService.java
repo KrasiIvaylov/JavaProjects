@@ -25,4 +25,10 @@ public interface BookService {
     List<String> findAllNotReleasedBooks(int year);
 
     List<String> findAllBooksBeforeDate(LocalDate localDate);
+
+    List<String> findBooksByString(String str);
+
+    List<String> findBooksByAuthorsName(String str);
+
+    int findTitleLongerThen(int count);
 }

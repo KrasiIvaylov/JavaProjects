@@ -46,8 +46,58 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             case 3 -> getBooksByPrice();
             case 4 -> notReleasedBooks();
             case 5 -> booksReleasedBeforeDate();
+            case 6 -> findAuthorByGivenString();
+            case 7 -> booksSearch();
+            case 8 -> booksSearchByAuthorCredentials();
+            case 9 -> countBooksByTitleCount();
+            case 10 -> getTotalNumberOfCopiesByAuthor();
         }
 
+    }
+
+    private void getTotalNumberOfCopiesByAuthor() {
+        authorService
+                .findAllAuthorsAndTheirTotalCopies()
+        .forEach(System.out::println);
+    }
+
+    private void countBooksByTitleCount() throws IOException {
+        System.out.println("Please enter title length in digits:");
+        int count = Integer.parseInt(bufferedReader.readLine());
+        int books = bookService
+                .findTitleLongerThen(count);
+
+        System.out.println(String.format("There are %d books with titles longer than %d symbols"
+                , books
+                , count));
+    }
+
+    private void booksSearchByAuthorCredentials() throws IOException {
+        System.out.println("Please enter author`s credentials:");
+
+        String str = bufferedReader.readLine();
+        bookService
+                .findBooksByAuthorsName(str)
+                .forEach(System.out::println);
+    }
+
+    private void booksSearch() throws IOException {
+        System.out.println("Please enter book credentials:");
+        String str = bufferedReader.readLine();
+
+        bookService
+                .findBooksByString(str)
+                .forEach(System.out::println);
+    }
+
+    private void findAuthorByGivenString() throws IOException {
+        System.out.println("Please enter last letters of the author`s first name:");
+        String str = bufferedReader.readLine();
+
+        System.out.println("Authors: ");
+        authorService
+                .findAuthorsFirstNameEndingWith(str)
+                .forEach(System.out::println);
     }
 
     private void booksReleasedBeforeDate() throws IOException {
@@ -56,7 +106,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         bookService
                 .findAllBooksBeforeDate(localDate)
-        .forEach(System.out::println);
+                .forEach(System.out::println);
     }
 
     private void notReleasedBooks() throws IOException {
@@ -64,7 +114,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         int year = Integer.parseInt(bufferedReader.readLine());
         bookService
                 .findAllNotReleasedBooks(year)
-        .forEach(System.out::println);
+                .forEach(System.out::println);
     }
 
     private void getBooksByPrice() {

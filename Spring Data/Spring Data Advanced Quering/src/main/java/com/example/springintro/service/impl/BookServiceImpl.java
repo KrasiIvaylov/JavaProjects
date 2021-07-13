@@ -69,7 +69,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<String> findAllBooksByAuthorFirstAndLastNameOrderByReleaseDate(String firstName, String lastName) {
-       return bookRepository
+        return bookRepository
                 .findAllByAuthor_FirstNameAndAuthor_LastNameOrderByReleaseDateDescTitle(firstName, lastName)
                 .stream()
                 .map(book -> String.format("%s %s %d",
@@ -126,9 +126,38 @@ public class BookServiceImpl implements BookService {
                 .findAllByReleaseDateBefore(localDate)
                 .stream()
                 .map(book -> String.format("%s %s %.2f",
-                        book.getTitle(),book.getEditionType().name(),book.getPrice()))
+                        book.getTitle(), book.getEditionType().name(), book.getPrice()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<String> findBooksByString(String str) {
+        return bookRepository
+                .findAllByTitleContaining(str)
+                .stream()
+                .map(book -> String.format("%s", book.getTitle()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findBooksByAuthorsName(String str) {
+        return bookRepository
+                .findAllByAuthor_LastNameStartsWith(str)
+                .stream()
+                .map(book -> String.format("%s (%s %s)"
+                        , book.getTitle()
+                        , book.getAuthor().getFirstName()
+                        , book.getAuthor().getLastName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public int findTitleLongerThen(int count) {
+
+        return bookRepository
+                .countBookByTitleLengthMoreThan(count);
+    }
+
 
     private Book createBookFromInfo(String[] bookInfo) {
         EditionType editionType = EditionType.values()[Integer.parseInt(bookInfo[0])];
