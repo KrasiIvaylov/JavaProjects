@@ -6,7 +6,6 @@ import com.example.dtoExercise.model.entity.User;
 import com.example.dtoExercise.repository.UserRepository;
 import com.example.dtoExercise.service.UserService;
 import com.example.dtoExercise.util.ValidationUtil;
-import com.sun.xml.bind.v2.TODO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
             System.out.println("Passwords dont match!");
             return;
         }
-        Set<ConstraintViolation<UserRegisterDto>> violations = validationUtil.violation(userRegisterDto);
+        Set<ConstraintViolation<UserRegisterDto>> violations = validationUtil.getViolations(userRegisterDto);
 
         if (!violations.isEmpty()){
             violations
@@ -50,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void loginUser(UserLoginDto userLoginDto) {
-        Set<ConstraintViolation<UserLoginDto>> violations = validationUtil.violation(userLoginDto);
+        Set<ConstraintViolation<UserLoginDto>> violations = validationUtil.getViolations(userLoginDto);
 
         if (!violations.isEmpty()){
             violations
@@ -60,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
             return;
         }
-        User user = userRepository.findByEmailAndFullName(userLoginDto.getEmail(), userLoginDto.getPassword())
+        User user = userRepository.findByEmailAndPassword(userLoginDto.getEmail(), userLoginDto.getPassword())
                 .orElse(null);
 
         if (user == null){
@@ -68,5 +67,17 @@ public class UserServiceImpl implements UserService {
             return;
         }
         loggedInUser = user;
+        System.out.println(String.format("Successfully logged in %s", loggedInUser.getFullName()));
+    }
+
+    @Override
+    public void logout() {
+        if (loggedInUser == null) {
+            System.out.println("Cannot log out. No user was logged in!");
+            return;
+        }else{
+            loggedInUser = null;
+            System.out.println(String.format("User %s successfully logged out", loggedInUser.getFullName()));
+        }
     }
 }
