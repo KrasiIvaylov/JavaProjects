@@ -80,4 +80,5 @@ public class UserServiceImpl implements UserService {
             System.out.println(String.format("User %s successfully logged out", loggedInUser.getFullName()));
         }
     }
+
 }

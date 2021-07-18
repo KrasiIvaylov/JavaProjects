@@ -14,17 +14,20 @@ import java.util.Set;
 public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
+    private final UserService userService;
     private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
 
-    public GameServiceImpl(GameRepository gameRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
+    public GameServiceImpl(GameRepository gameRepository, UserService userService, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.gameRepository = gameRepository;
+        this.userService = userService;
         this.modelMapper = modelMapper;
         this.validationUtil = validationUtil;
     }
 
     @Override
     public void addGame(GameAddDto gameAddDto) {
+
         Set<ConstraintViolation<GameAddDto>> violations = validationUtil.getViolations(gameAddDto);
 
         if (!violations.isEmpty()){

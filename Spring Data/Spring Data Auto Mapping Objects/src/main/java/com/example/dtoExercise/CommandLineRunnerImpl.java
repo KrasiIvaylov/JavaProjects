@@ -49,7 +49,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                         .logout();
                 case "AddGame" -> gameService
                         .addGame(new GameAddDto(commands[1], new BigDecimal(commands[2]),
-                                Integer.parseInt(commands[3]), commands[4], commands[5], commands[6], commands[7]
+                                Double.parseDouble(commands[3]), commands[4], commands[5], commands[6], commands[7]
                                 ));
             }
         }
