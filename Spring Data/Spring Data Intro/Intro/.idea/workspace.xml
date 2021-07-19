@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c3ab0d8-6966-4088-832f-760f27ee19f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Hibernate Code First/Exercise/src.zip" beforeDir="false" />
-    </list>
+    <list default="true" id="2c3ab0d8-6966-4088-832f-760f27ee19f6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +39,7 @@
       <workItem from="1625577590679" duration="3000" />
       <workItem from="1625577608909" duration="428000" />
       <workItem from="1625660605569" duration="3478000" />
+      <workItem from="1626702005297" duration="3000" />
     </task>
     <servers />
   </component>
