@@ -1,10 +1,8 @@
 package com.example.jsonprocessing.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -13,6 +11,7 @@ public class Products extends BaseEntity{
     private BigDecimal price;
     private User seller;
     private User buyer;
+    private Set<Category> categories;
 
     public Products() {
     }
@@ -51,5 +50,14 @@ public class Products extends BaseEntity{
 
     public void setBuyer(User buyer) {
         this.buyer = buyer;
+    }
+
+    @ManyToMany
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
