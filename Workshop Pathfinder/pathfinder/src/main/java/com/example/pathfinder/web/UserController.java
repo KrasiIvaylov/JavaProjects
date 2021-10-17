@@ -2,6 +2,7 @@ package com.example.pathfinder.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -9,10 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return "register";
     }
 
+    @PostMapping("/register")
+    public String registerConfirm() {
+        //TODO
+       return "redirect:/";
+    }
     @GetMapping("/login")
     public String login(){
         return "login";
