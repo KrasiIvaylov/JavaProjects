@@ -1,0 +1,9 @@
+                Hibernate Introduction
+    Maven, Hibernate, Configuration, JPA, Annotations
+
+ 1. Maven (Project Management and Comprehension
+  * Maven is a built automation tool
+   - Describes how software is built and its dependencies
+   - Uses XML files
+  * Dynamically downloads Java Libraries and Maven plug-ins
+   - Projects are configured using a Project Object Model which is stored in a pom.xml file

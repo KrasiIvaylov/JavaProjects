@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hibernateIntro" />
+        <module name="introtohibernate" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Exercise" target="17" />
+      <module name="Exervise" target="17" />
+      <module name="hibernateIntro" target="17" />
+      <module name="introtohibernate" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
