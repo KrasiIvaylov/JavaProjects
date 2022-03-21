@@ -1,5 +1,6 @@
 package Engine;
 
+import entities.Address;
 import entities.Employee;
 
 import javax.persistence.EntityManager;
@@ -30,10 +31,61 @@ public class Engine implements Runnable {
                 case 2 -> exTwo();
                 case 3 -> exThree();
                 case 4 -> exFour();
+                case 5 -> exFive();
+                case 6 -> exSix();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void exSix() throws IOException {
+        System.out.println("Please enter employee last name:");
+        String lastName = bufferedReader.readLine();
+
+        Employee employee = entityManager
+                .createQuery("SELECT e FROM Employee e " +
+                        "WHERE e.lastName = :l_name", Employee.class)
+                .setParameter("l_name", lastName)
+                .getSingleResult();
+
+        System.out.println("Please enter new address:");
+        String newAddress = bufferedReader.readLine();
+        Address address = createAddress(newAddress);
+
+        entityManager.getTransaction().begin();
+        employee.setAddress(address);
+        entityManager.getTransaction().commit();
+        System.out.println(String.format("Employee %s enrolled on %s", lastName, newAddress));
+    }
+
+    private Address createAddress(String addressText) {
+        Address address = new Address();
+        address.setText(addressText);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(address);
+        entityManager.getTransaction().commit();
+
+        return address;
+    }
+
+    private void exFive() throws IOException {
+        System.out.println("Please enter department name:");
+        String department = bufferedReader.readLine();
+        entityManager
+                .createQuery("SELECT e FROM Employee e " +
+                        "WHERE e.department.name = :d_name " +
+                        "ORDER BY e.salary, e.id", Employee.class)
+                .setParameter("d_name", department)
+                .getResultStream()
+                .forEach(employee -> {
+                    System.out.printf("%s %s from %s - $%.2f%n",
+                            employee.getFirstName(),
+                            employee.getLastName(),
+                            employee.getDepartment().getName(),
+                            employee.getSalary());
+                });
     }
 
     private void exFour() {
