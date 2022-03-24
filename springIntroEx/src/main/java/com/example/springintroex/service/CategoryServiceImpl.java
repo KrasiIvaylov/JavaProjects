@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (categoryRepository.count() > 0) {
             return;
         }
-        
+
         Files.readAllLines(Path.of(CATEGORIES_FILE_PATH))
                 .stream()
                 .filter(row -> !row.isEmpty())
