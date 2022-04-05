@@ -1,2 +1,0 @@
-bg/softuni/simpleServlet/HelloServlet.java
- bg.softuni.simpleServlet.HelloServlet
