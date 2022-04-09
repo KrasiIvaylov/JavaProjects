@@ -16,7 +16,6 @@ public class BaseEntity {
     private Instant created;
 
     private Instant modified;
-
     public Long getId() {
         return id;
     }
