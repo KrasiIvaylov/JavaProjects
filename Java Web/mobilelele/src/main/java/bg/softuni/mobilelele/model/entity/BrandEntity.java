@@ -5,10 +5,14 @@ import java.time.Instant;
 import java.util.List;
 
 @Entity
-@Table(name = "brand")
+@Table(name = "brands")
 public class BrandEntity extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ModelEntity> models;
@@ -18,8 +22,9 @@ public class BrandEntity extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public BrandEntity setName(String name) {
         this.name = name;
+        return this;
     }
 
     public List<ModelEntity> getModels() {
@@ -29,4 +34,5 @@ public class BrandEntity extends BaseEntity {
     public void setModels(List<ModelEntity> models) {
         this.models = models;
     }
+
 }
