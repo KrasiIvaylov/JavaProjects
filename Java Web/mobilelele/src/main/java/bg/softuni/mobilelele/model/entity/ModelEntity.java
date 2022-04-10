@@ -9,7 +9,6 @@ import static javax.persistence.EnumType.STRING;
 @Entity
 @Table(name ="models")
 public class ModelEntity extends BaseEntity{
-
     @Column(nullable = false)
     private String name;
     @Enumerated(EnumType.STRING)
@@ -26,58 +25,42 @@ public class ModelEntity extends BaseEntity{
     public String getName() {
         return name;
     }
-
-    public ModelEntity setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public CategoryEnum getCategory() {
         return category;
     }
-
-    public ModelEntity setCategory(CategoryEnum category) {
+    public void setCategory(CategoryEnum category) {
         this.category = category;
-        return this;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
-
-    public ModelEntity setImageUrl(String imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-        return this;
     }
 
     public Integer getStartYear() {
         return startYear;
     }
-
-    public ModelEntity setStartYear(Integer startYear) {
+    public void setStartYear(Integer startYear) {
         this.startYear = startYear;
-        return this;
     }
 
     public Integer getEndYear() {
         return endYear;
     }
-
-    public ModelEntity setEndYear(Integer endYear) {
+    public void setEndYear(Integer endYear) {
         this.endYear = endYear;
-        return this;
     }
 
     public BrandEntity getBrand() {
         return brand;
     }
-
-    public ModelEntity setBrand(BrandEntity brand) {
+    public void setBrand(BrandEntity brand) {
         this.brand = brand;
-        return this;
-    }
-
-    public void beforeCreate() {
-        setCreated(Instant.now());
     }
 }
