@@ -12,7 +12,7 @@ public class ModelEntity extends BaseEntity{
 
     @Column(nullable = false)
     private String name;
-    @Enumerated(STRING)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CategoryEnum category;
     @Column(nullable = false)
@@ -20,7 +20,6 @@ public class ModelEntity extends BaseEntity{
     @Column(nullable = false)
     private Integer startYear;
     private Integer endYear;
-
     @ManyToOne
     private BrandEntity brand;
 

@@ -1,7 +1,6 @@
 package bg.softuni.mobilelele.model.entity;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -9,8 +8,7 @@ import java.util.List;
 public class BrandEntity extends BaseEntity {
 
     private String name;
-
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private List<ModelEntity> models;
 
 
@@ -18,8 +16,9 @@ public class BrandEntity extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public BrandEntity setName(String name) {
         this.name = name;
+        return this;
     }
 
     public List<ModelEntity> getModels() {
