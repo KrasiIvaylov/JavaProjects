@@ -1,5 +1,7 @@
 package bg.softuni.mobilelele.model.entity;
 
+import org.springframework.ui.Model;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,19 +9,9 @@ import java.util.List;
 @Table(name = "brands")
 public class BrandEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
-=======
-
-
-    @OneToMany(cascade = CascadeType.ALL)
->>>>>>> 1680181ce1fae65f1a6acfd578914d18eddd3188
-    private List<ModelEntity> models;
-
+   private String name;
+   @OneToMany(mappedBy ="brand" ,cascade = CascadeType.ALL)
+   private List<ModelEntity> models;
 
     public String getName() {
         return name;
@@ -37,5 +29,4 @@ public class BrandEntity extends BaseEntity {
     public void setModels(List<ModelEntity> models) {
         this.models = models;
     }
-
 }

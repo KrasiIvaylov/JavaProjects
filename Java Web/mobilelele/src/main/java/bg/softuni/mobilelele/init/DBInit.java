@@ -13,6 +13,7 @@ import java.util.List;
 public class DBInit implements CommandLineRunner {
 
     private final BrandRepository brandRepository;
+
     public DBInit(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
     }

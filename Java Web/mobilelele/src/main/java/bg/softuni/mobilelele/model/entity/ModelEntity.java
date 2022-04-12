@@ -2,10 +2,6 @@ package bg.softuni.mobilelele.model.entity;
 
 import javax.persistence.*;
 
-import java.time.Instant;
-
-import static javax.persistence.EnumType.STRING;
-
 @Entity
 @Table(name ="models")
 public class ModelEntity extends BaseEntity{
@@ -17,7 +13,7 @@ public class ModelEntity extends BaseEntity{
     @Column(nullable = false)
     private String imageUrl;
     @Column(nullable = false)
-    private Integer startYear;
+    private int startYear;
     private Integer endYear;
     @ManyToOne
     private BrandEntity brand;
@@ -25,34 +21,42 @@ public class ModelEntity extends BaseEntity{
     public String getName() {
         return name;
     }
-    public void setName(String name) {
+
+    public ModelEntity setName(String name) {
         this.name = name;
+        return this;
     }
 
     public CategoryEnum getCategory() {
         return category;
     }
-    public void setCategory(CategoryEnum category) {
+
+    public ModelEntity setCategory(CategoryEnum category) {
         this.category = category;
+        return this;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
-    public void setImageUrl(String imageUrl) {
+
+    public ModelEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
-    public Integer getStartYear() {
+    public int getStartYear() {
         return startYear;
     }
-    public void setStartYear(Integer startYear) {
+
+    public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
 
-    public Integer getEndYear() {
+    public int getEndYear() {
         return endYear;
     }
+
     public void setEndYear(Integer endYear) {
         this.endYear = endYear;
     }
@@ -60,6 +64,7 @@ public class ModelEntity extends BaseEntity{
     public BrandEntity getBrand() {
         return brand;
     }
+
     public void setBrand(BrandEntity brand) {
         this.brand = brand;
     }
