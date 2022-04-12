@@ -13,7 +13,7 @@ public class ModelEntity extends BaseEntity{
     @Column(nullable = false)
     private String imageUrl;
     @Column(nullable = false)
-    private int startYear;
+    private Integer startYear;
     private Integer endYear;
     @ManyToOne
     private BrandEntity brand;
@@ -49,7 +49,7 @@ public class ModelEntity extends BaseEntity{
         return startYear;
     }
 
-    public void setStartYear(int startYear) {
+    public void setStartYear(Integer startYear) {
         this.startYear = startYear;
     }
 
@@ -57,8 +57,9 @@ public class ModelEntity extends BaseEntity{
         return endYear;
     }
 
-    public void setEndYear(Integer endYear) {
+    public ModelEntity setEndYear(Integer endYear) {
         this.endYear = endYear;
+        return this;
     }
 
     public BrandEntity getBrand() {

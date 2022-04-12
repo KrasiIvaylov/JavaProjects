@@ -21,21 +21,21 @@ public class DBInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (brandRepository.count() == 0){
+        if (brandRepository.count() == 0) {
             BrandEntity ford = new BrandEntity().setName("Ford");
             ModelEntity fiesta = new ModelEntity();
             fiesta
+                    .setCategory(CategoryEnum.CAR)
                     .setName("Fiesta")
                     .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg/800px-2017_Ford_Fiesta_Zetec_Turbo_1.0_Front.jpg")
-                    .setStartYear(1976)
-                    .setCategory(CategoryEnum.CAR);
+                    .setStartYear(1976);
 
             ModelEntity mondeo = new ModelEntity();
             mondeo
+                    .setCategory(CategoryEnum.CAR)
                     .setName("Mondeo")
                     .setImageUrl("https://images.ams.bg/images/galleries/207570/ford-mondeo-otiva-v-istoriyata-prez-mart-2022-g-1616681377_big.jpg")
-                    .setStartYear(2022)
-                    .setCategory(CategoryEnum.CAR);
+                    .setStartYear(2022);
 
             ford.setModels(List.of(fiesta, mondeo));
             fiesta.setBrand(ford);
