@@ -1,7 +1,5 @@
 package bg.softuni.mobilelele.model.entity;
 
-import org.springframework.ui.Model;
-
 import javax.persistence.*;
 import java.util.List;
 

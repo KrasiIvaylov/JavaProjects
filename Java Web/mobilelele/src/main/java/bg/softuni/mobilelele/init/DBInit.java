@@ -1,9 +1,11 @@
 package bg.softuni.mobilelele.init;
 
 import bg.softuni.mobilelele.model.entity.BrandEntity;
-import bg.softuni.mobilelele.model.entity.CategoryEnum;
+import bg.softuni.mobilelele.model.entity.UserEntity;
+import bg.softuni.mobilelele.model.entity.enumeration.CategoryEnum;
 import bg.softuni.mobilelele.model.entity.ModelEntity;
 import bg.softuni.mobilelele.repository.BrandRepository;
+import bg.softuni.mobilelele.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +15,31 @@ import java.util.List;
 public class DBInit implements CommandLineRunner {
 
     private final BrandRepository brandRepository;
+    private final UserRepository userRepository;
 
-    public DBInit(BrandRepository brandRepository) {
+    public DBInit(BrandRepository brandRepository, UserRepository userRepository) {
         this.brandRepository = brandRepository;
+        this.userRepository = userRepository;
     }
 
 
     @Override
     public void run(String... args) {
+
+    }
+
+    private void initializeUsers() {
+        if (userRepository.count() == 0) {
+            UserEntity admin = new UserEntity();
+            admin
+                    .setActive(true)
+                    .setUsername("admin")
+                    .setFirstName("Admin")
+                    .setLastName("Admin");
+        }
+    }
+
+    private void initializeBrandAndModels() {
         if (brandRepository.count() == 0) {
             BrandEntity ford = new BrandEntity().setName("Ford");
             ModelEntity fiesta = new ModelEntity();

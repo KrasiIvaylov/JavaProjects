@@ -1,4 +1,4 @@
-package bg.softuni.mobilelele;
+package java.bg.softuni.mobilelele;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

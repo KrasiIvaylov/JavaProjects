@@ -1,4 +1,4 @@
-package bg.softuni.mobilelele.model.entity;
+package bg.softuni.mobilelele.model.entity.enumeration;
 
 public enum CategoryEnum {
     CAR,
