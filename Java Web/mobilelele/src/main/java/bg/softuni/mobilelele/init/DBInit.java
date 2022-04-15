@@ -1,9 +1,9 @@
 package bg.softuni.mobilelele.init;
 
 import bg.softuni.mobilelele.model.entity.BrandEntity;
+import bg.softuni.mobilelele.model.entity.ModelEntity;
 import bg.softuni.mobilelele.model.entity.UserEntity;
 import bg.softuni.mobilelele.model.entity.enumeration.CategoryEnum;
-import bg.softuni.mobilelele.model.entity.ModelEntity;
 import bg.softuni.mobilelele.repository.BrandRepository;
 import bg.softuni.mobilelele.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -33,9 +33,19 @@ public class DBInit implements CommandLineRunner {
             UserEntity admin = new UserEntity();
             admin
                     .setActive(true)
-                    .setUsername("admin")
-                    .setFirstName("Admin")
-                    .setLastName("Admin");
+                    .setUsername("Admin")
+                    .setPassword("TODO")
+                    .setLastName("Adminov")
+                    .setFirstName("Admin");
+
+            UserEntity user = new UserEntity();
+            user
+                    .setActive(true)
+                    .setUsername("User")
+                    .setPassword("TODO")
+                    .setLastName("Userov")
+                    .setFirstName("User");
+
         }
     }
 

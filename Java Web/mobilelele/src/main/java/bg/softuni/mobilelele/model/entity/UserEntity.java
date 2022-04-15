@@ -39,31 +39,35 @@ public class UserEntity extends BaseEntity {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public UserEntity setActive(boolean active) {
         isActive = active;
+        return this;
     }
 
     public Set<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRoleEntity> roles) {
+    public UserEntity setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
+        return this;
     }
 }
